@@ -100,7 +100,13 @@ Im Rückwärtsdurchlauf (Backpropagation) werden die Gradienten berechnet. Die G
 
 
 ##### Evaluierungsfunktion
+Ziel der Testfunktion ist es die Leistung des Modells zu bewerten. Dazu werden hier verschiedene Bewertungsmethoden eingesetzt. 
 
+1.) Durchschnittlicher Gesamtverlust
+Dabei handelt es sich um eine dimensionslose Größe die durch die wie folgt berechnet wird:
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/6dac7673-5972-4fec-b926-b111df791fac)
+
+Dabei ist N die Länge des Test DataLoaders.
 
 
 ### Faster RCNN
