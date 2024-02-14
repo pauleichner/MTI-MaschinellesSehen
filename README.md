@@ -54,8 +54,11 @@ DataSet.py (Datenvorbereitung und -verarbeitung)
 Funktionen.py (Training, Test, Evaluierung, Visualisierung)
 ```
 Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig: 
+
 1.) Erstellung der Datenklasse 
+
 2.) Erstellung des Modellstruktur 
+
 3.) Erstellung der Trainings- und Evaluierungsfunktion
 
 #### Datenklasse
