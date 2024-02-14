@@ -103,10 +103,22 @@ Im Rückwärtsdurchlauf (Backpropagation) werden die Gradienten berechnet. Die G
 Ziel der Testfunktion ist es die Leistung des Modells zu bewerten. Dazu werden hier verschiedene Bewertungsmethoden eingesetzt. 
 
 1.) Durchschnittlicher Gesamtverlust
-Dabei handelt es sich um eine dimensionslose Größe die durch die wie folgt berechnet wird:
+Dabei handelt es sich um eine dimensionslose Größe die die wie folgt berechnet wird:
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/6dac7673-5972-4fec-b926-b111df791fac)
 
 Dabei ist N die Länge des Test DataLoaders.
+
+
+2.) Durchschnittlicher Klassifiezierungsverlust
+Dabei handelt es sich um eine dimensionlose Größe die wie folgt berechnet wird:
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/34afeea2-704e-4a26-bc9f-afca116dd3a1)
+
+3.) Genauigkeit
+Die Genauigkeit ist eine prozentuale Größe die die richtigen Vorhersagen mit allen Vorhersagen setzt:
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/a7a0d7be-66f8-4a41-b650-fb931c6c72f3)
+
+4.) Durchschnittlicher Intersection over Union
+Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also der echten Bounding Box und der vorhergesagten Bounding Box mit möglichen Werten von 0 bis 1, wobei 0 -> keine Übereinstimmung bedeuten würde und 1 -> eine komplette Übereinstimmung bedeuten würde.
 
 
 ### Faster RCNN
