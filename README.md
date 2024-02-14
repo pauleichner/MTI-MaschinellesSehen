@@ -17,8 +17,22 @@ Tatsächlich wurden bereits einige Projekte in diesem Umfeld implementiert. Ein 
 
 
 ## Realisierung des Projektes
-**Beschaffung des Datensatzes**
-Dabei wurde zunächst ein eigener Datensatz ,von Bildern, mit Hilfe historischer Daten angelegt. Diese Bilder zeigten Preisbewegungen verschiedenster Aktien des S&P 500 als Kerzenchart. 
+**Datensatzerstellung und Vorbereiten**
+Aufgrund der Schwirigkeit einen umfangreichen und genauen Datensatz für Chartmuster zu finden, wurde entschieden einen eigenen Datensatz zu erstellen. Dieser Schritt war notwendig da eine solider Datensatz eine wichtige Grundlage für ein erfolgreiches Training von CNN's ist. Zu diesem Zweck wurde ein Script geschrieben, welches auf die Erkennung und Speicherung von spezifischen Chartmustern in historischen Preisdaten ausgerichtet war. Die dabei verwendeten Daten stammen von verschiedenen Aktien aus dem "Standard & Poor's 500" Aktienindex und wurden  von der Yahoo Finance API zur Verfügung gestellt. Die dabei verwendete Zeiteinheit der Kerzen betrug eine Kerze pro Tag. 
+Anschließend wurden die Bilder manuell gesichtet und die aussagekräftigesten und deutlichsten Muster für das Training gespeichert. 
+Um die Chartmuster präzise zu Erkennung, wurde die Webanwendung CVAT(Computer Vision Annotation Tool) eingesetzt. Mit CVAT wurden die Bounding Boxen manuell um die identifizierten Chartmuster gezeichnet.
+Folgenden Chartmuster wurden dabei berücksichtigt:
+- Black Crow
+- Bullish Engulfing
+- Hammer
+- Bullish Harami
+- Morning Star
+- Shooting Star
+- White Soldier
+Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbewegungen hinweisen können.
+
+Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/e6a92b40-2f04-464e-b1ad-6656bde8c9d4)
 
 
 
