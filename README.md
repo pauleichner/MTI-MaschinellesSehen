@@ -1,11 +1,23 @@
 # Projekt: Chartmustererkennung mit einem Convolutional Neural Network 
 
+## Einführung
 
-## Einführung und Grund für die Arbeit
+**Einführung**
+
+**Related Work**
+
+
 
 
 
 ## Realisierung des Projektes
+
+**Beschaffung des Datensatzes**
+
+**ResNet50**
+
+
+**Faster RCNN**
 
 
 
