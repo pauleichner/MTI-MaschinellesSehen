@@ -118,6 +118,22 @@ Das YOLO-Netzwerk betrachtet auf der anderen Seite die Objekterkennung als ein e
 Da das Projekt im Bereich des Swing-Tradings angewendet werden soll, also in einem "langsameren" Handelsbereich, wo Positionen über mehrere Tage und Wochen gehalten werden können, fiel die Wahl au das Faster R-CNN. Hierbei werden Genauigkeit und Aussagekraft der Vorhersagen wichtiger bewertet als die Schnelligkeit.
 
 #### Projektimplementierung
+Da sich der grundlegende Aufbau des Projekts zu dem des Projekts für das ResNet50 nicht wesentlich unterscheided, wird hier nur auf die Unterschiede eingegangen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Auswertung der Ergebnisse
