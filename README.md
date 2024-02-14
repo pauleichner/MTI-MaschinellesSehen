@@ -66,7 +66,7 @@ Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig
 #### Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
 Die genaue Aufgabe der Klasse sind es für die von dem Modell geforderten Eingabewerte im richitgen Format bereitzustellen.
-Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt. Die Entscheidung die Bilder auf 224x224 Pixel zu transformieren wurde bewusst getroffen, da das ResNet50 ursprünglich mit dem ImageNet Datensatz trainiert wurde, welcher ebenfalls Bilder dieser Größe verwendet hat. Diese Anpassung kann zu einer Performance-Steigerung führen, da zum einen die Verarbeitung von quadratischen Bilder für Netzwerke besser und zum anderen da natürlich eine kleinere Bildgröße weniger Speicherplatz auf der GPU in Anspruch nimmt. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurückgegeben.
+Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt. Die Entscheidung die Bilder auf 224x224 Pixel zu transformieren wurde bewusst getroffen, da das ResNet50 ursprünglich mit dem ImageNet Datensatz trainiert wurde, welcher ebenfalls Bilder dieser Größe verwendet hat. Diese Anpassung kann zu einer Performance-Steigerung führen, da zum einen die Verarbeitung von quadratischen Bilder für Netzwerke besser und zum anderen da natürlich eine kleinere Bildgröße weniger Speicherplatz auf der GPU in Anspruch nimmt. Jedoch darf die Bildgröße auch nicht zu klein werden, da sonst wichtige Features des Bildes verloren gehen. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurückgegeben.
 
 #### Modellstruktur 
 Die Klasse ResNet50forChartPattern definiert ein PyTorch-Modell das, wie oben beschrieben, auf der ResNet50 Modellarchitektur beruht und für das Training und die Evaluation auf einen eigenen Datensatz angepasst ist. Dazu wird die letzte Fully Connected Schicht des Netzwerks, mit Hilfe der nn.Identity()-Funktion, durch zwei eigene Layer ersetzt. Eine welche die Anzahl der vorhersagbaren Klassen: nn.Linear(2048, num_classes) und eine welche für die Ausgabe der Boudning Box zustädnig ist: nn.Linear(2048, 4). Im Forward-Pass wird nun der Eingabetensor "x" durch das Modell geleitet um Merkmale zu extrahieren und um anschließend durch die Fully Connected Layer Aussagen über die Klasse und die Bounding Box Koordinaten zu treffen.
@@ -101,17 +101,20 @@ Die Genauigkeit ist eine prozentuale Größe die die richtigen Vorhersagen mit a
 4.) Durchschnittlicher Intersection over Union
 Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also der echten Bounding Box und der vorhergesagten Bounding Box mit möglichen Werten von 0 bis 1, wobei 0 -> keine Übereinstimmung bedeuten würde und 1 -> eine komplette Übereinstimmung bedeuten würde.
 
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/0db9e14c-2182-4278-85c6-b0587118212f)
+
+
 Nachdem alle Funktionen implementiert wurden kann nun das Training über die main.py gestartet werden.
 Der vollständige Code zu dieser Implementierung ist unter /01-ResNet50/ abgelegt. Der dazugehörige Datensatz liegt unter /03-Datensatz/
 
 ---
 
-### Faster RCNN
+### Faster R-CNN
 Nachdem die Implementierung eines Single Label Object Detectors besprochen und implementiert wurde, folgt nun die Implementierung eines Multi Label Object Detectors, also der Lokalisierung von mehr als einem Objekt innerhalb desselben Bildes. Dies ist von Vorteil da einige der Bilder des Datensatzes ebenfalls mehrere Chartmuster behinhalten (siehe Beispiel).
 
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/43c27e44-f444-4c36-8b81-dec53a0e02f7)
 
-#### Faster RCNN vs YOLO
+#### Faster R-CNN vs YOLO
 Um eine Entscheidung zu treffen welches Modell besser geeignet ist, müssen beide Modelle auf ihre Stärken und Schwächen untersucht werden. 
 Das Faster R-CNN verwendet ein Region Proposal Network um Objektkandidaten vorzuschlagen. Auf diesen Vorschlag werden dann Klassifizierer und Bounding Box Regressor angewendet. Dieser zweistufige Prozess führt in der Regel zu einer höheren Genauigkeit bedeutet aber auch, dass Training des Modells und Vorhersagen länger dauern.
 Das YOLO-Netzwerk betrachtet auf der anderen Seite die Objekterkennung als ein einzelnen Regressionsporblem, dass von der Bildpixel direkt zu Bounding-Box Koordinaten und Klassenvorhersagen führt. Dieser Ansatz ist deutlich schneller als der des F-R-CNN kann aber in einigen Fällen ungenauer Ausfallen.
@@ -120,10 +123,10 @@ Da das Projekt im Bereich des Swing-Tradings angewendet werden soll, also in ein
 #### Projektimplementierung
 Da sich der grundlegende Aufbau des Projekts zu dem des Projekts für das ResNet50 nicht wesentlich unterscheided, wird hier nur auf die Unterschiede eingegangen.
 
+##### Datenklasse
+Die Bereitstellung von Daten für das F-R-CNN Modell erforderte einige spezifische Änderungen im Vergleich zu der Datenklasse des ResNet50. Ein entscheidender Unterschied liegt in der Art und Weise wie das Ziel (oder target) definiert wird, das für jede Trainings oder Testinstanz ein Dictionary anstelle eines einfachen Labels ist. Diese Dictionary enthällt Informationen über die Bounding Boxes, Klassenbezeichnungen, Bild-ID's und Fläche der Bounding Boxen. Hierbei ist zu beachten, dass die Bounding Boxes als absolute Pixelwerte angegeben werden müssen. Um dies zu erreichen muss eine Umrechnung von YOLO-Koordinaten zu absoluten Pixelwerten stattfinden. Diese Umrechnung erfolgt folgendermaßen
 
-
-
-
+Hier morgen weiter machen 
 
 
 
