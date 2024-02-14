@@ -104,7 +104,11 @@ Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also d
 
 
 ### Faster RCNN
+Nachdem die Implementierung eines Single Label Object Detectors besprochen und implementiert wurde, folgt nun die Implementierung eines Multi Label Object Detectors, also der Lokalisierung von mehr als einem Objekt innerhalb desselben Bildes. Dies ist von Vorteil da einige der Bilder des Datensatzes ebenfalls mehrere Chartmuster behinhalten (siehe Beispiel).
 
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/43c27e44-f444-4c36-8b81-dec53a0e02f7)
+
+#### Faster RCNN vs YOLO
 
 
 ## Auswertung der Ergebnisse
