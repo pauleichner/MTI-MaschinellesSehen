@@ -22,13 +22,15 @@ Aufgrund der Schwirigkeit einen umfangreichen und genauen Datensatz für Chartmu
 Anschließend wurden die Bilder manuell gesichtet und die aussagekräftigesten und deutlichsten Muster für das Training gespeichert. 
 Um die Chartmuster präzise zu Erkennung, wurde die Webanwendung CVAT(Computer Vision Annotation Tool) eingesetzt. Mit CVAT wurden die Bounding Boxen manuell um die identifizierten Chartmuster gezeichnet.
 Folgenden Chartmuster wurden dabei berücksichtigt:
-- Black Crow
-- Bullish Engulfing
-- Hammer
-- Bullish Harami
-- Morning Star
-- Shooting Star
-- White Soldier
+
+- Black Crow (Anzahl an Patterns: 132)
+- Bullish Engulfing (Anzahl an Patterns: 185)
+- Hammer (Anzahl an Patterns: 112)
+- Bullish Harami (Anzahl an Patterns: 108)
+- Morning Star (Anzahl an Patterns: 51)
+- Shooting Star (Anzahl an Patterns: 92)
+- White Soldier (Anzahl an Patterns: 100)
+
 Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbewegungen hinweisen können.
 
 Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
