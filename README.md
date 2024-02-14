@@ -59,7 +59,7 @@ Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig
 
 #### Erstellung der Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
-Die Hauptfunktion 
+
 
 
 
