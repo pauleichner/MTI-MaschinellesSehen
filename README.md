@@ -49,11 +49,8 @@ Dieses Projekt zeigt die Implementierung eines Single Label Object Detection Mod
 Die Grundlegende Projektstruktur sieht folgendermaßen aus:
 ```scss
 main.py
-  ↓
 ResNet50.py (Modell und Architektur)
-  ↓
 DataSet.py (Datenvorbereitung und -verarbeitung)
-  ↓
 Funktionen.py (Training, Test, Evaluierung, Visualisierung)
 ```
 Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig: 
