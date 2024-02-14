@@ -44,9 +44,10 @@ Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format
 <object-class> <x_center> <y_center> <width> <height>
 ```
 
-
-
 **ResNet50**
+
+
+
 
 **Faster RCNN**
 
