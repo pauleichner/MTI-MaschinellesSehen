@@ -59,7 +59,7 @@ Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig
 
 #### Erstellung der Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
-Die genaue Aufgaben der Klasse sind es für die von dem Modell geforderten Eingabewerte im richitgen Format bereitzustellen.
+Die genaue Aufgabe der Klasse sind es für die von dem Modell geforderten Eingabewerte im richitgen Format bereitzustellen.
 ```python
 class ResNet50Dataclass(Dataset):
     def __init__(self, images_path, labels_path, transform=None):
