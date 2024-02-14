@@ -38,8 +38,7 @@ Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/8c044d57-2e5d-4e10-8746-acc0d96dc607)
 
 
-Die zugehörigen Klassenlabel und Bounding Box Koordinaten wuredn im YOLO-Format gespeichert.
-
+Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format gespeichert. Dieses Format wurde gewählt, da es nicht auf absoluten Pixelwerten basiert sondern auf relativen Größen des Bildes. Dadurch wird die Skalierung der Bilder und die dadurch notwendige Umrechnung der Bounding Boxen stark vereinfacht.
 
 ```python
 <object-class> <x_center> <y_center> <width> <height>
