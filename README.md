@@ -39,9 +39,14 @@ Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
 
 
 Die zugehörigen Klassenlabel und Bounding Box Koordinaten wuredn im YOLO-Format gespeichert.
-'''
+
+
+```python
 <object-class> <x_center> <y_center> <width> <height>
-'''
+```
+
+
+
 **ResNet50**
 
 **Faster RCNN**
