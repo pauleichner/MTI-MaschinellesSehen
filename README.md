@@ -38,7 +38,10 @@ Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/8c044d57-2e5d-4e10-8746-acc0d96dc607)
 
 
-
+Die zugehörigen Klassenlabel und Bounding Box Koordinaten wuredn im YOLO-Format gespeichert.
+'''
+<object-class> <x_center> <y_center> <width> <height>
+'''
 **ResNet50**
 
 **Faster RCNN**
