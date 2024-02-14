@@ -45,30 +45,34 @@ Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format
 ```
 
 ### ResNet50
-
+Dieses Projekt zeigt die Implementierung eines Single Label Object Detection Modells unter Verwendung der vortrainierten ResNet50 Architektur mit PyTorch.
 Die Grundlegende Projektstruktur sieht folgendermaßen aus:
-ResNet50.py -> enthällt das Modell und die Logik zur Verwendung der ResNet50 Architektur
-DataSet.py -> enthällt die Logik zur Vorbereitung und zur Verarbeitung der Daten dir für               das Training und die Validierung wichtig sind.
-Funktionen.py -> enthällt die train und test Funktionen sowie Funktionen zur Evaluierung und Visualisierung des Modells
-main.py -> ist der Haupt-Einstiegspunkt des Programmes
-
+```scss
+main.py
+  ↓
+ResNet50.py (Modell und Architektur)
+  ↓
+DataSet.py (Datenvorbereitung und -verarbeitung)
+  ↓
+Funktionen.py (Training, Test, Evaluierung, Visualisierung)
+```
 Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig: 
 1.) Erstellung der Datenklasse 
 2.) Erstellung des Modellstruktur 
 3.) Erstellung der Trainings- und Evaluierungsfunktion
 
-#### Erstellung der Datenklasse
+#### Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
 Die genaue Aufgabe der Klasse sind es für die von dem Modell geforderten Eingabewerte im richitgen Format bereitzustellen.
+Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurckgegeben.
 
 
 
 
+#### Modellstruktur 
 
-#### Erstellung des Modellstruktur 
 
-
-#### Erstellung der Trainings- und Evaluierungsfunktion
+#### Trainings- und Evaluierungsfunktion
 
 
 
