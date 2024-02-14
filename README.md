@@ -67,7 +67,29 @@ Die genaue Aufgabe der Klasse sind es für die von dem Modell geforderten Eingab
 Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt. Die Entscheidung die Bilder auf 224x224 Pixel zu transformieren wurde bewusst getroffen, da das ResNet50 ursprünglich mit dem ImageNet Datensatz trainiert wurde, welcher ebenfalls Bilder dieser Größe verwendet hat. Diese Anpassung kann zu einer Performance-Steigerung führen, da zum einen die Verarbeitung von quadratischen Bilder für Netzwerke besser und zum anderen da natürlich eine kleinere Bildgröße weniger Speicherplatz auf der GPU in Anspruch nimmt. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurückgegeben.
 
 #### Modellstruktur 
+Die Klasse ResNet50forChartPattern definiert ein PyTorch-Modell das, wie oben beschrieben, auf der ResNet50 Modellarchitektur beruht und für das Training und die Evaluation auf einen eigenen Datensatz angepasst ist. Dazu wird die letzte Fully Connected Schicht des Netzwerks, mit Hilfe der nn.Identity()-Funktion, durch zwei eigene Layer ersetzt. Eine welche die Anzahl der vorhersagbaren Klassen: nn.Linear(2048, num_classes) und eine welche für die Ausgabe der Boudning Box zustädnig ist: nn.Linear(2048, 4). Im Forward-Pass wird nun der Eingabetensor "x" durch das Modell geleitet um Merkmale zu extrahieren und um anschließend durch die Fully Connected Layer Aussagen über die Klasse und die Bounding Box Koordinaten zu treffen.
 
+```python
+class ResNet50forChartPattern(nn.Module):
+    def __init__(self, num_classes):
+        super(ResNet50forChartPattern, self).__init__()
+        # Laden des ResNet50-Modells mit dem aktuellen 'Weights'-Parameter
+        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1) # nicht mehr pretrained=True
+        # https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Identity
+        self.resnet.fc = nn.Identity() # ersetzt die letzte Schicht, da sonst 1000 Klassen
+        # Fully Connected Layer für die Klassen
+        self.fc_class = nn.Linear(2048, num_classes)  # Anpassung für Klassifizierung
+        # Fully Connected Layer für die Bounding Boxen 
+        self.fc_bbox = nn.Linear(2048, 4)  # 4 Koordinaten für die Bounding Box
+
+    def forward(self, x):
+        x = self.resnet(x)
+        # Ausgabe der Klasse
+        class_output = self.fc_class(x)
+        # Ausgabe der Bounding Box
+        bbox_output = self.fc_bbox(x)
+        return class_output, bbox_output
+```
 
 #### Trainings- und Evaluierungsfunktion
 
