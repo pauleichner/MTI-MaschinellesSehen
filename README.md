@@ -64,10 +64,7 @@ Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig
 #### Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
 Die genaue Aufgabe der Klasse sind es für die von dem Modell geforderten Eingabewerte im richitgen Format bereitzustellen.
-Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt.  Die Entscheidung die Bilder auf 224x224 Pixel zu transformieren wurde bewusst getroffen, da das ResNet50 ursprünglich mit dem ImageNet Datensatz trainiert wurde, welcher ebenfalls Bilder dieser Größe verwendet hat. Diese Anpassung kann zu einer Performance-Steigerung führen. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurückgegeben.
-
-
-
+Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in die PyTorch eigene Datenart tensor umgewandelt. Die Entscheidung die Bilder auf 224x224 Pixel zu transformieren wurde bewusst getroffen, da das ResNet50 ursprünglich mit dem ImageNet Datensatz trainiert wurde, welcher ebenfalls Bilder dieser Größe verwendet hat. Diese Anpassung kann zu einer Performance-Steigerung führen, da zum einen die Verarbeitung von quadratischen Bilder für Netzwerke besser und zum anderen da natürlich eine kleinere Bildgröße weniger Speicherplatz auf der GPU in Anspruch nimmt. Zum Schluss wird das Bild und das dazugehörige Label als Tensor zurückgegeben.
 
 #### Modellstruktur 
 
