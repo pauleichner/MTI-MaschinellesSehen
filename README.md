@@ -71,27 +71,6 @@ Bei der "ResNet50Dataclass" wird das Bild auf 224x224 Pixel transformiert und in
 #### Modellstruktur 
 Die Klasse ResNet50forChartPattern definiert ein PyTorch-Modell das, wie oben beschrieben, auf der ResNet50 Modellarchitektur beruht und für das Training und die Evaluation auf einen eigenen Datensatz angepasst ist. Dazu wird die letzte Fully Connected Schicht des Netzwerks, mit Hilfe der nn.Identity()-Funktion, durch zwei eigene Layer ersetzt. Eine welche die Anzahl der vorhersagbaren Klassen: nn.Linear(2048, num_classes) und eine welche für die Ausgabe der Boudning Box zustädnig ist: nn.Linear(2048, 4). Im Forward-Pass wird nun der Eingabetensor "x" durch das Modell geleitet um Merkmale zu extrahieren und um anschließend durch die Fully Connected Layer Aussagen über die Klasse und die Bounding Box Koordinaten zu treffen.
 
-```python
-class ResNet50forChartPattern(nn.Module):
-    def __init__(self, num_classes):
-        super(ResNet50forChartPattern, self).__init__()
-        # Laden des ResNet50-Modells mit dem aktuellen 'Weights'-Parameter
-        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1) # nicht mehr pretrained=True
-        # https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Identity
-        self.resnet.fc = nn.Identity() # ersetzt die letzte Schicht, da sonst 1000 Klassen
-        # Fully Connected Layer für die Klassen
-        self.fc_class = nn.Linear(2048, num_classes)  # Anpassung für Klassifizierung
-        # Fully Connected Layer für die Bounding Boxen 
-        self.fc_bbox = nn.Linear(2048, 4)  # 4 Koordinaten für die Bounding Box
-
-    def forward(self, x):
-        x = self.resnet(x)
-        # Ausgabe der Klasse
-        class_output = self.fc_class(x)
-        # Ausgabe der Bounding Box
-        bbox_output = self.fc_bbox(x)
-        return class_output, bbox_output
-```
 
 #### Trainings- und Evaluierungsfunktion
 ##### Trainingsfunktion
@@ -104,6 +83,7 @@ Ziel der Testfunktion ist es die Leistung des Modells zu bewerten. Dazu werden h
 
 1.) Durchschnittlicher Gesamtverlust
 Dabei handelt es sich um eine dimensionslose Größe die die wie folgt berechnet wird:
+
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/6dac7673-5972-4fec-b926-b111df791fac)
 
 Dabei ist N die Länge des Test DataLoaders.
@@ -111,14 +91,18 @@ Dabei ist N die Länge des Test DataLoaders.
 
 2.) Durchschnittlicher Klassifiezierungsverlust
 Dabei handelt es sich um eine dimensionlose Größe die wie folgt berechnet wird:
+
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/34afeea2-704e-4a26-bc9f-afca116dd3a1)
 
 3.) Genauigkeit
 Die Genauigkeit ist eine prozentuale Größe die die richtigen Vorhersagen mit allen Vorhersagen setzt:
+
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/a7a0d7be-66f8-4a41-b650-fb931c6c72f3)
 
 4.) Durchschnittlicher Intersection over Union
 Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also der echten Bounding Box und der vorhergesagten Bounding Box mit möglichen Werten von 0 bis 1, wobei 0 -> keine Übereinstimmung bedeuten würde und 1 -> eine komplette Übereinstimmung bedeuten würde.
+
+
 
 
 ### Faster RCNN
