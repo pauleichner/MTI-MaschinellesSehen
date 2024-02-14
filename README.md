@@ -103,11 +103,6 @@ Die Genauigkeit ist eine prozentuale Größe die die richtigen Vorhersagen mit a
 Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also der echten Bounding Box und der vorhergesagten Bounding Box mit möglichen Werten von 0 bis 1, wobei 0 -> keine Übereinstimmung bedeuten würde und 1 -> eine komplette Übereinstimmung bedeuten würde.
 
 
-### Hauptteil
-
-
-
-
 
 ### Faster RCNN
 
