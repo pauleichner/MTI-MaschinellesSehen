@@ -44,12 +44,35 @@ Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format
 <object-class> <x_center> <y_center> <width> <height>
 ```
 
-###ResNet50
- 
+### ResNet50
+
+Die Grundlegende Projektstruktur sieht folgendermaßen aus:
+ResNet50.py -> enthällt das Modell und die Logik zur Verwendung der ResNet50 Architektur
+DataSet.py -> enthällt die Logik zur Vorbereitung und zur Verarbeitung der Daten dir für               das Training und die Validierung wichtig sind.
+Funktionen.py -> enthällt die train und test Funktionen sowie Funktionen zur Evaluierung und Visualisierung des Modells
+main.py -> ist der Haupt-Einstiegspunkt des Programmes
+
+Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig: 
+1.) Erstellung der Datenklasse 
+2.) Erstellung des Modellstruktur 
+3.) Erstellung der Trainings- und Evaluierungsfunktion
+
+#### Erstellung der Datenklasse
+Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
+Die Hauptfunktion 
 
 
 
-###Faster RCNN
+
+
+#### Erstellung des Modellstruktur 
+
+
+#### Erstellung der Trainings- und Evaluierungsfunktion
+
+
+
+### Faster RCNN
 
 
 
