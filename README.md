@@ -101,9 +101,8 @@ Die Genauigkeit ist eine prozentuale Größe die die richtigen Vorhersagen mit a
 4.) Durchschnittlicher Intersection over Union
 Die IoU ist eine dimensionsloses Verhältnis zwischen der "Ground Thruth" also der echten Bounding Box und der vorhergesagten Bounding Box mit möglichen Werten von 0 bis 1, wobei 0 -> keine Übereinstimmung bedeuten würde und 1 -> eine komplette Übereinstimmung bedeuten würde.
 
-___
-
-Der Code zu dieser Implementierung ist unter /01-ResNet50/ abgelegt. Der dazugehörige Datensatz liegt unter /03-Datensatz/
+Nachdem alle Funktionen implementiert wurden kann nun das Training über die main.py gestartet werden.
+Der vollständige Code zu dieser Implementierung ist unter /01-ResNet50/ abgelegt. Der dazugehörige Datensatz liegt unter /03-Datensatz/
 
 ---
 
@@ -113,6 +112,12 @@ Nachdem die Implementierung eines Single Label Object Detectors besprochen und i
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/43c27e44-f444-4c36-8b81-dec53a0e02f7)
 
 #### Faster RCNN vs YOLO
+Um eine Entscheidung zu treffen welches Modell besser geeignet ist, müssen beide Modelle auf ihre Stärken und Schwächen untersucht werden. 
+Das Faster R-CNN verwendet ein Region Proposal Network um Objektkandidaten vorzuschlagen. Auf diesen Vorschlag werden dann Klassifizierer und Bounding Box Regressor angewendet. Dieser zweistufige Prozess führt in der Regel zu einer höheren Genauigkeit bedeutet aber auch, dass Training des Modells und Vorhersagen länger dauern.
+Das YOLO-Netzwerk betrachtet auf der anderen Seite die Objekterkennung als ein einzelnen Regressionsporblem, dass von der Bildpixel direkt zu Bounding-Box Koordinaten und Klassenvorhersagen führt. Dieser Ansatz ist deutlich schneller als der des F-R-CNN kann aber in einigen Fällen ungenauer Ausfallen.
+Da das Projekt im Bereich des Swing-Tradings angewendet werden soll, also in einem "langsameren" Handelsbereich, wo Positionen über mehrere Tage und Wochen gehalten werden können, fiel die Wahl au das Faster R-CNN. Hierbei werden Genauigkeit und Aussagekraft der Vorhersagen wichtiger bewertet als die Schnelligkeit.
+
+#### Projektimplementierung
 
 
 ## Auswertung der Ergebnisse
