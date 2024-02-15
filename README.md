@@ -223,6 +223,13 @@ Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (ob
 
 <img width="1093" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/19c51dab-5f93-4351-ba58-1c61c22b9200">
 
+Auch zeigt sich das gewünschte Verhalten bei dem Trainieren von CNN's. Die dunklere Färbung auf der diagonalen Achse von links oben nach rechts unten zeigt, dass alle bis auf eine Klasse überwiegend erkannt werden. Die Muster was nicht wie gewollt erkannt wird, ist das "Morning-Star" Pattern. Mit Blick auf die Anzhal der Bilder pro Klasse wird auch der wahrscheinliche Grund dafür geliefert. Die Klasse "Morning-Star" ist stark unterrepräsentiert. Dies kann beim Training von CNN's zu schlechteren Ergebnissen führen.
+
+Wenn die qualitativen Ergebnisse bertrachtet werden, fällt auf, dass zu hoher Wahrscheinlichkeit die richitge Klasse erkannt wird. Allein die Lokalisierung des Objektes funktioniert nur teilweise. In dem folgenden Beispiel sind die tatsächlichen Bounding Boxen als durchgezogene Linie dargestellt und die vorhergesagte Box als gestrichelte Linie.
+
+<img width="1264" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/de2b35aa-c8f7-4b75-b20e-6eb13e27d984">
+
+
 ### Auswertung Faster R-CNN
 Auch bei Betrachtung der Ergebnisse des Faster R-CNN ist zunächst ein positiver Trend zu erkennen. Leider konnte dieses Modell aufgrund von erhöhtem Speicherplatz und damit verbunden längeren Trainingszeiten nur für 400 Epochen trainiert werden.
 
