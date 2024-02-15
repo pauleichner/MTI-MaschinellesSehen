@@ -225,5 +225,6 @@ Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (ob
 
 
 ## Zusammenfassung und Ausblick
-Insgemast zeigt das Projekt 
+Insgemast zeigt das Projekt viel versprechenede Ergebnisse. Durch die Anwendung moderner CNN-Architekturen wie dem ResNet50 oder dem Faster R-CNN ist es möglich komplexe Muster in Preischarts zu erkennen. Beide Modellen waren in der Lage die vorgegeben Muster zu erkennen und zu klassifizieren.
+Die korrekte und sorgfältige Erstellung des Datensatzes ist hier der Schlüsselpunkt. Weiterführend würde es Sinn ergeben mehr Trainingsdaten zu sammeln und den Datensatz somit zu erweitern. Dabei sollte darauf geachtet werden, dass es eine ausgewogene Verteilung der Bilder auf die Klassen gibt. 
 
