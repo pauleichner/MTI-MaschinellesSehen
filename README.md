@@ -35,7 +35,7 @@ Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbeweg
 Leider konnten Formen der Data Augmentation nicht angewendet werden, da würde man die Muster drehen, zuschneiden oder spiegelen am Enden nicht mehr das richtige Muster dabei rauskommen.
 
 
-Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
+Einige Beispiele der gezeichneten Bounding Boxen für jede Klasse werden hier dargestellt:
 
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/e6a92b40-2f04-464e-b1ad-6656bde8c9d4)
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/48585ffc-79d1-489d-81a2-79e120c646b8)
@@ -43,6 +43,7 @@ Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/71e43cb4-2155-428f-84a7-a29df1e3f114)
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/28d4f576-754e-4f91-b931-fa25a16aedda)
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/650be79c-92b3-4c0d-b436-3e4bd8914581)
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/74ffb48e-8a56-4c1a-a86f-f3627a1a7c32)
 
 
 Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format gespeichert. Dieses Format wurde gewählt, da es nicht auf absoluten Pixelwerten basiert sondern auf relativen Größen des Bildes. Dadurch wird die Skalierung der Bilder und die dadurch notwendige Umrechnung der Bounding Boxen stark vereinfacht.
