@@ -191,9 +191,12 @@ Ein weiterer Unterschied welcher aber erst während des Trainings implementiert 
 ```python
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 ```
-Dies war notwending da während anfänglicher Trainingstyklien es zu einem zu hohen Gradienten kam und das Modell darauf die Anpassung der Gewichte nicht mehr ordnungsgemäß anpassen konnte. Grund dafür ist das gerade bei tiefen Netzen wie dem Faster R-CNN es durch wiederholtes Anwenden der Kettenregel während der Backpropagation zu hohen Gradienten kommen kann, da jede Schicht zur Steigerung des Gradienten beiträgt. Ist die Steigung Größe der Steigung größer als 1 kann es schnell zu einem exponentiellen Anstieg kommen durch den das Modell nicht mehr in der Lage ist die Gewichte ordnungsgemäß anzupassen. 
+Dies war notwendig, da zu Beginn des Trainingsprozesses die Gradienten unerwartet hohe Werte erreichten, was eine angemessene Anpassung der Gewichte durch das Modell verhinderte. Besonders in tiefen Netzwerken wie dem Faster R-CNN kann es durch die Anwendung der Kettenregel während der Backpropagation zu einer Verstärkung der Gradienten kommen. Jede Schicht im Netzwerk trägt potenziell zur Vergrößerung des Gradienten bei. Wenn die Steigung der Gradienten konsequent größer als 1 ist, kann dies zu einem exponentiellen Anstieg der Gradientengröße führen. Dieser Zustand macht es für das Modell zunehmend schwieriger, die Gewichte effektiv anzupassen, da die Richtung und Größe der erforderlichen Anpassungen durch die übermäßig großen Gradienten verzerrt werden.
 Dieser Plot wurde während des Trainings des Modells aufgenommen:
 ![Plots](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/bd862e33-7b81-479c-acf5-d2b5c320a0f6)
+
+
+##### Evaluierungsfunktion
 
 
 
