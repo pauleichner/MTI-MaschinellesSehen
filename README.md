@@ -201,9 +201,10 @@ Dieser Plot wurde während des Trainings des Modells aufgenommen:
 ##### Evaluierungsfunktion
 Die Testfunktion unterscheided sich nur in den Auswertungsmetriken die vorgenommen wurden. Hier wurden die Precision, der Recall und der F1-Score berechnet und ausgegeben. Formeln zu den Berechnungen sind unten aufgeführt.
 
-<img width="528" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/977a1344-ba0f-4e03-ab0c-2d9d69875b2b">
-<img width="456" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/aa8e24b1-9a01-4185-9064-c4ad338003b9">
-<img width="579" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/8d09a544-2f0a-426b-982e-9002703924f7">
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/9dfe4513-93f9-4678-8e77-7ef6e26322c9)
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/50701b51-8043-456f-b0ea-7e0fe5895f7c)
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/7df9d51f-c982-4c98-b2c8-a7259fc6fb13)
+
 
 
 Nachdem alle Funktionen implementiert wurden kann nun das Training über die main.py gestartet werden.
