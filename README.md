@@ -208,3 +208,37 @@ Da es ohne
 
 
 ## Zusammenfassung und Ausblick
+
+```python
+class ResNet50forChartPattern(nn.Module):
+    def __init__(self, num_classes):
+        super(ResNet50forChartPattern, self).__init__()
+        # Laden des ResNet50-Modells mit dem aktuellen 'Weights'-Parameter
+        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1) # nicht mehr pretrained=True
+        # https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Identity
+        self.resnet.fc = nn.Identity() # ersetzt die letzte Schicht, da sonst 1000 Klassen
+        # Fully Connected Layer für die Klassen
+        self.fc_class = nn.Linear(2048, num_classes)  # Anpassung für Klassifizierung
+        # Fully Connected Layer für die Bounding Boxen 
+        self.fc_bbox = nn.Linear(2048, 4)  # 4 Koordinaten für die Bounding Box
+
+    def forward(self, x):
+        x = self.resnet(x)
+        # Ausgabe der Klasse
+        class_output = self.fc_class(x)
+        # Ausgabe der Bounding Box
+        bbox_output = self.fc_bbox(x)
+        return class_output, bbox_output
+```
+
+
+```python
+def create_model(num_classes):
+    weights = FasterRCNN_ResNet50_FPN_Weights.DEFAULT
+    model = fasterrcnn_resnet50_fpn(weights=weights)
+    # Anzahl der in_features
+    in_features = model.roi_heads.box_predictor.cls_score.in_features 
+    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes + 1)  # +1 für den Hintergrund
+    return model
+
+```
