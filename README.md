@@ -242,3 +242,8 @@ def create_model(num_classes):
     return model
 
 ```
+
+
+TODO: Trainings und Testssplit was zu sagen. 
+      Am Ende auch die Bilder und den Code von Yolo einfügen (auch wie man das runterläd und yaml. Datei usw)
+      
