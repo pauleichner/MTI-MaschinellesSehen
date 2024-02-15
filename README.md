@@ -182,6 +182,20 @@ Hier ist ein kleines Beispiel von der Internetseite zur Verdeutlichung:
 ``` python
 Epoch: [6]  [ 50/119]  eta: 0:00:46  lr: 0.000050  loss: 0.3973 (0.4123)  loss_classifier: 0.1202 (0.1248)  loss_box_reg: 0.1947 (0.2039)  loss_objectness: 0.0315 (0.0366)  loss_rpn_box_reg: 0.0459 (0.0470)  time: 0.6730  data: 0.1297  max mem: 3105
 ```
+Aufgrund der gelieferten Ausgaben des Systems kann der Gesamtverlust berechnet werden:
+```python
+loss_dict = model(images_list, targets_list)
+losses = loss_dict['loss_classifier'] + loss_dict['loss_box_reg'] + loss_dict.get('loss_objectness', 0) + loss_dict.get('loss_rpn_box_reg', 0)
+```
+Ein weiterer Unterschied welcher aber erst während des Trainings implementiert wurde ist die Begrenzung des Gradienten durch:
+```python
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+```
+Dies war notwending da während anfänglicher Trainingstyklien es zu einem zu hohen Gradienten kam und das Modell darauf die Anpassung der Gewichte nicht mehr ordnungsgemäß anpassen konnte. Grund dafür ist das gerade bei tiefen Netzen wie dem Faster R-CNN es durch wiederholtes Anwenden der Kettenregel während der Backpropagation zu hohen Gradienten kommen kann, da jede Schicht zur Steigerung des Gradienten beiträgt. Ist die Steigung Größe der Steigung größer als 1 kann es schnell zu einem exponentiellen Anstieg kommen durch den das Modell nicht mehr in der Lage ist die Gewichte ordnungsgemäß anzupassen.
+
+Dieser Plot wurde während des Trainings des Modells aufgenommen:
+![Plots](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/bd862e33-7b81-479c-acf5-d2b5c320a0f6)
+
 
 
 ## Auswertung der Ergebnisse
