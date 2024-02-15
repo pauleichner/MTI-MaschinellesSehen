@@ -4,10 +4,10 @@
 ### Einführung
 
 In dem Folgenden Projekt wurde die Erkennung von Chartmustern mittels verschiedener Convolutional Neural Networks implementiert. 
-Sogenannte Chartmuster können Aufschluss darüber geben wie sich der Kurs eines Vermögenswertes, beispielsweise einer Aktie, verhällt. Zusammen mit weiteren technischen und fundamentalen Indikatoren, können Chartmustern als zusätzlicher Indiz einer Preisbewegung gesehen werden.
+Sogenannte Chartmuster können Aufschluss darüber geben wie sich der Kurs eines Vermögenswertes, beispielsweise einer Aktie, verhält. Zusammen mit weiteren technischen und fundamentalen Indikatoren, können Chartmustern als zusätzlicher Indiz einer Preisbewegung gesehen werden.
 
 Die übliche Erkennung von Chartmustern sieht keine Benutzung von Convolutional Neural Networks vor. Statdessen werden die Chartmuster durch Programmierung verschiedener mathemtischer Bedingungen erkannt und ausgewertet. Diese Erkennung ist in den meisten Fällen durchaus zutreffend und kann deswegen als Stand der Technik angesehen werden.
-Obwohl die mathematische Analyse zur Erkennung von Chartmustern effektiv ist, kann dennoch die Erkennung druch CNN lohnenswert sein. Durch die Auswahl des geeigneten Datensatzes und die Erzielung hoher Genauigkeit kann man auf diese Weise das menschliche Verhalten bei der Identifizierung von Chartmuster nahezu wiederpsiegeln.
+Obwohl die mathematische Analyse zur Erkennung von Chartmustern effektiv ist, kann dennoch die Erkennung durch CNN lohnenswert sein. Durch die Auswahl des geeigneten Datensatzes und die Erzielung hoher Genauigkeit kann man auf diese Weise das menschliche Verhalten bei der Identifizierung von Chartmuster nahezu wiederspiegeln.
 Dieser Ansatz hat das Potential komplexere Muster zu erkennen die möglicherweise von traditionellen Methoden übersehen werden.
 
 ### Related Work
@@ -18,8 +18,8 @@ Tatsächlich wurden bereits einige Projekte in diesem Umfeld implementiert. Ein 
 
 ## Realisierung des Projektes
 ### Datensatzerstellung und Vorbereiten
-Aufgrund der Schwirigkeit einen umfangreichen und genauen Datensatz für Chartmuster zu finden, wurde entschieden einen eigenen Datensatz zu erstellen. Dieser Schritt war notwendig da eine solider Datensatz eine wichtige Grundlage für ein erfolgreiches Training von CNN's ist. Zu diesem Zweck wurde ein Script geschrieben, welches auf die Erkennung und Speicherung von spezifischen Chartmustern in historischen Preisdaten ausgerichtet war. Die dabei verwendeten Daten stammen von verschiedenen Aktien aus dem "Standard & Poor's 500" Aktienindex und wurden  von der Yahoo Finance API zur Verfügung gestellt. Die dabei verwendete Zeiteinheit der Kerzen betrug eine Kerze pro Tag. 
-Anschließend wurden die Bilder manuell gesichtet und die aussagekräftigesten und deutlichsten Muster für das Training gespeichert. Dabei wurde darauf geachtet, dass weder ein Grid-Muster noch Achsen des Koordinatensystems oder Werte der Achsen mit abgespeichert wurden.
+Aufgrund der Schwierigkeit einen umfangreichen und genauen Datensatz für Chartmuster zu finden, wurde entschieden einen eigenen Datensatz zu erstellen. Dieser Schritt war notwendig da ein solider Datensatz eine wichtige Grundlage für ein erfolgreiches Training von CNN's ist. Zu diesem Zweck wurde ein Script geschrieben, welches auf die Erkennung und Speicherung von spezifischen Chartmustern in historischen Preisdaten ausgerichtet war. Die dabei verwendeten Daten stammen von verschiedenen Aktien aus dem "Standard & Poor's 500" Aktienindex und wurden  von der Yahoo Finance API zur Verfügung gestellt. Die dabei verwendete Zeiteinheit der Kerzen betrug eine Kerze pro Tag. 
+Anschließend wurden die Bilder manuell gesichtet und die aussagekräftigesten und deutlichsten Muster für das Training gespeichert. Dabei wurde darauf geachtet, Grid-Muster, Achsen des Koordinatensystems oder deren Werte nicht mitzuspeichern.
 Um die Chartmuster präzise zu erkennen, wurde die Webanwendung CVAT(Computer Vision Annotation Tool) eingesetzt. Mit CVAT wurden die Bounding Boxen manuell um die identifizierten Chartmuster gezeichnet.
 Folgenden Chartmuster wurden dabei berücksichtigt:
 
@@ -32,7 +32,7 @@ Folgenden Chartmuster wurden dabei berücksichtigt:
 - White Soldier (Anzahl an Patterns: 100)
 
 Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbewegungen hinweisen können. Anschließend wurden der Datensatz in 80% Trainingsdaten und 20% Testdaten unterteilt. 
-Leider konnten Formen der Data Augmentation nicht angewendet werden, da würde man die Muster drehen, zuschneiden oder spiegelen am Enden nicht mehr das richitge Muster dabei rauskommen.
+Leider konnten Formen der Data Augmentation nicht angewendet werden, da würde man die Muster drehen, zuschneiden oder spiegelen am Enden nicht mehr das richtige Muster dabei rauskommen.
 
 
 Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
@@ -215,16 +215,11 @@ Das ResNet50 wurde über 3000 Epochen trainiert. Im Folgenden sind die quantitat
 
 <img width="1074" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/11f2dbcd-3617-4e0c-ab8e-a4cbdd54be53">
 
-Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (oben rechts) abnimmt, während die Genauigkeit (unten rechts) zunimmt. Nach 3000 Epochen wird eine Genauigkeit von über 80% erreicht. Simultan dazu verhällt sich ebenfalls der Klassenverlust und die durchschnittliche Intersection over Union. Ingesamt zeigen die Plots, dass das Modell aus den Daten lernt und sich über die Zeit verbessert. Im Folgenden Bild ist Confusion Matrix des Modells dargestellt.
+Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (oben rechts) abnimmt, während die Genauigkeit (unten rechts) zunimmt. Nach 3000 Epochen wird eine Genauigkeit von über 80% erreicht. Simultan dazu verhält sich ebenfalls der Klassenverlust und die durchschnittliche Intersection over Union. Ingesamt zeigen die Plots, dass das Modell aus den Daten lernt und sich über die Zeit verbessert. Im Folgenden Bild ist Confusion Matrix des Modells dargestellt.
 
 <img width="1093" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/19c51dab-5f93-4351-ba58-1c61c22b9200">
 
 
-
-
-
-
-
 ## Zusammenfassung und Ausblick
-TODO: Alle Chartpatterns oben nochmal rein
+Insgemast zeigt das Projekt 
 
