@@ -246,4 +246,4 @@ def create_model(num_classes):
 
 TODO: Trainings und Testssplit was zu sagen. 
       Am Ende auch die Bilder und den Code von Yolo einfügen (auch wie man das runterläd und yaml. Datei usw)
-      
+      Auch schreiben dass leider Data Augmentation nicht verwendet werden konnte. Da wenn ich das drehe ein komplett anderes Muster bei rauskommt.
