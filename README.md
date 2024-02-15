@@ -31,7 +31,9 @@ Folgenden Chartmuster wurden dabei berücksichtigt:
 - Shooting Star (Anzahl an Patterns: 92)
 - White Soldier (Anzahl an Patterns: 100)
 
-Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbewegungen hinweisen können.
+Jedes der Chartmuster hat bestimmte Eigenschaften die auf potentielle Preisbewegungen hinweisen können. Anschließend wurden der Datensatz in 80% Trainingsdaten und 20% Testdaten unterteilt. 
+Leider konnten Formen der Data Augmentation nicht angewendet werden, da würde man die Muster drehen, zuschneiden oder spiegelen am Enden nicht mehr das richitge Muster dabei rauskommen.
+
 
 Einige Beispiele der gezeichneten Bounding Boxen werden hier dargestellt:
 
@@ -197,7 +199,15 @@ Dieser Plot wurde während des Trainings des Modells aufgenommen:
 
 
 ##### Evaluierungsfunktion
+Die Testfunktion unterscheided sich nur in den Auswertungsmetriken die vorgenommen wurden. Hier wurden die Precision, der Recall und der F1-Score berechnet und ausgegeben. Formeln zu den Berechnungen sind unten aufgeführt.
 
+<img width="528" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/977a1344-ba0f-4e03-ab0c-2d9d69875b2b">
+<img width="456" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/aa8e24b1-9a01-4185-9064-c4ad338003b9">
+<img width="579" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/8d09a544-2f0a-426b-982e-9002703924f7">
+
+
+Nachdem alle Funktionen implementiert wurden kann nun das Training über die main.py gestartet werden.
+Der vollständige Code zu dieser Implementierung ist unter /02-Faster R-CNN/ abgelegt. Der dazugehörige Datensatz liegt unter /03-Datensatz/
 
 
 ## Auswertung der Ergebnisse
@@ -206,44 +216,6 @@ Dieser Plot wurde während des Trainings des Modells aufgenommen:
 Da es ohne 
 
 
-
 ## Zusammenfassung und Ausblick
 
-```python
-class ResNet50forChartPattern(nn.Module):
-    def __init__(self, num_classes):
-        super(ResNet50forChartPattern, self).__init__()
-        # Laden des ResNet50-Modells mit dem aktuellen 'Weights'-Parameter
-        self.resnet = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1) # nicht mehr pretrained=True
-        # https://pytorch.org/docs/stable/_modules/torch/nn/modules/linear.html#Identity
-        self.resnet.fc = nn.Identity() # ersetzt die letzte Schicht, da sonst 1000 Klassen
-        # Fully Connected Layer für die Klassen
-        self.fc_class = nn.Linear(2048, num_classes)  # Anpassung für Klassifizierung
-        # Fully Connected Layer für die Bounding Boxen 
-        self.fc_bbox = nn.Linear(2048, 4)  # 4 Koordinaten für die Bounding Box
 
-    def forward(self, x):
-        x = self.resnet(x)
-        # Ausgabe der Klasse
-        class_output = self.fc_class(x)
-        # Ausgabe der Bounding Box
-        bbox_output = self.fc_bbox(x)
-        return class_output, bbox_output
-```
-
-
-```python
-def create_model(num_classes):
-    weights = FasterRCNN_ResNet50_FPN_Weights.DEFAULT
-    model = fasterrcnn_resnet50_fpn(weights=weights)
-    # Anzahl der in_features
-    in_features = model.roi_heads.box_predictor.cls_score.in_features 
-    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes + 1)  # +1 für den Hintergrund
-    return model
-
-```
-
-
-TODO: Trainings und Testssplit was zu sagen. 
-      Am Ende auch die Bilder und den Code von Yolo einfügen (auch wie man das runterläd und yaml. Datei usw)
-      Auch schreiben dass leider Data Augmentation nicht verwendet werden konnte. Da wenn ich das drehe ein komplett anderes Muster bei rauskommt.
