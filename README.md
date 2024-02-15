@@ -127,10 +127,23 @@ Da das Projekt im Bereich des Swing-Tradings angewendet werden soll, also in ein
 Da sich der grundlegende Aufbau des Projekts zu dem des Projekts für das ResNet50 nicht wesentlich unterscheided, wird hier nur auf die Unterschiede eingegangen.
 
 ##### Datenklasse
-Die Bereitstellung von Daten für das F-R-CNN Modell erforderte einige spezifische Änderungen im Vergleich zu der Datenklasse des ResNet50. Ein entscheidender Unterschied liegt in der Art und Weise wie das Ziel (oder target) definiert wird, das für jede Trainings oder Testinstanz ein Dictionary anstelle eines einfachen Labels ist. Diese Dictionary enthällt Informationen über die Bounding Boxes, Klassenbezeichnungen, Bild-ID's und Fläche der Bounding Boxen. Hierbei ist zu beachten, dass die Bounding Boxes als absolute Pixelwerte angegeben werden müssen. Um dies zu erreichen muss eine Umrechnung von YOLO-Koordinaten zu absoluten Pixelwerten stattfinden. Diese Umrechnung erfolgt folgendermaßen
+Die Bereitstellung von Daten für das F-R-CNN Modell erforderte einige spezifische Änderungen im Vergleich zu der Datenklasse des ResNet50. Ein entscheidender Unterschied liegt in der Art und Weise wie das Ziel (oder target) definiert wird, das für jede Trainings oder Testinstanz ein Dictionary anstelle eines einfachen Labels ist. Diese Dictionary enthällt Informationen über die Bounding Boxes, Klassenbezeichnungen, Bild-ID's und Fläche der Bounding Boxen. Hierbei ist zu beachten, dass die Bounding Boxes als absolute Pixelwerte angegeben werden müssen. Um dies zu erreichen muss eine Umrechnung von YOLO-Koordinaten zu absoluten Pixelwerten stattfinden. Diese sind in der Regel so dargestellt:
 
-Hier morgen weiter machen 
+```python
+<x_min> <y_min> <x_max> <y_max>
+```
 
+Dabei geschieht die Umrechnung folgendermaßen:
+![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/a7c9852b-27ee-44c1-a348-b881fdf21c92)
+
+Ein weiterer Punkt der beachtet werde musste, ist das das F-R-CNN standardmäßig das Klassenlabel "0" als Label für den Hintergrund sieht. Daher mussten hier die Klassenindizies um eins nach vorne geshiftet werden.
+
+```python
+with open(label_path) as f:
+    for line in f.readlines():
+        class_id, x_center, y_center, width, height = [float(x) for x in line.strip().split()]
+        labels.append(int(class_id) + 1)
+```
 
 
 
