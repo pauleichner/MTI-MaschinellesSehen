@@ -146,9 +146,26 @@ with open(label_path) as f:
         labels.append(int(class_id) + 1)
 ```
 
-
-
-
+#### Modellstruktur
+Das Modell des Faster R-CNN kann wie folgt implementiert werden.
+```python
+def create_model(num_classes):
+    weights = FasterRCNN_ResNet50_FPN_Weights.DEFAULT
+    model = fasterrcnn_resnet50_fpn(weights=weights)
+    # Anzahl der in_features
+    in_features = model.roi_heads.box_predictor.cls_score.in_features 
+    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes + 1)  # +1 für den Hintergrund
+    return model
+```
+Auch hier wird erneut die letzte Schicht 
+```python
+model.roi_heads.box_predictor
+```
+auf die Klassen des eigenen Datensatzes angepasst:
+```python
+FastRCNNPredictor(in_features, num_classes + 1)
+```
+Auch hier muss der Hintergrund, als eigene Klasse, berücksichtigt werden.
 
 
 
