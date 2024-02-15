@@ -223,8 +223,20 @@ Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (ob
 
 <img width="1093" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/19c51dab-5f93-4351-ba58-1c61c22b9200">
 
+### Auswertung Faster R-CNN
+Auch bei Betrachtung der Ergebnisse des Faster R-CNN ist zunächst ein positiver Trend zu erkennen. Leider konnte dieses Modell aufgrund von erhöhtem Speicherplatz und damit verbunden längeren Trainingszeiten nur für 400 Epochen trainiert werden.
 
-## Zusammenfassung und Ausblick
+<img width="1886" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/f733eca6-7c3a-4b11-8213-388e56044acf">
+
+Zu erkenn ist jedoch trotzdem, dass die Genauigkeit und der F1-Score mit Anzhal der Epochen zunimmt. Auch der Recall scheint sich bei 0.9 einzupendeln. Diese Auswertungen deuten darauf hin, dass auch dieses Modell aus den Daten lernt. Zum jetztigen Zeitpunkt deutet nichts darauf hin, dass mit erhöhter Anzahl der trainierten Epochen das Netzwerk nicht noch besser die Chartmuster erkennen könnte. 
+
+Auch die qualitative Betrachtung deutete auf einen postivien Trend hin.
+
+<img width="1240" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/2d890ca5-3877-4bf8-bd39-ad277d65534e">
+
+Bei genauerer Betrachtung der korrekten Bounding Boxen fällt auf, dass Netzwerk tatsächlich in vielen Fällen das richtige Muster erkannt hat. Auch die beiden Plots unten rechts deuten auf einen positiven Trend der Erkennnung hin. Stand jetzt werden jedoch noch zu viele Muster pro Bild erkannt, was auf die geringe Genauigkeit zurückzuführen ist.
+
+## Fazit
 Insgemast zeigt das Projekt viel versprechenede Ergebnisse. Durch die Anwendung moderner CNN-Architekturen wie dem ResNet50 oder dem Faster R-CNN ist es möglich komplexe Muster in Preischarts zu erkennen. Beide Modellen waren in der Lage die vorgegeben Muster zu erkennen und zu klassifizieren.
 Die korrekte und sorgfältige Erstellung des Datensatzes ist hier der Schlüsselpunkt. Weiterführend würde es Sinn ergeben mehr Trainingsdaten zu sammeln und den Datensatz somit zu erweitern. Dabei sollte darauf geachtet werden, dass es eine ausgewogene Verteilung der Bilder auf die Klassen gibt. 
 
