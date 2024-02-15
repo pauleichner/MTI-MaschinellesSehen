@@ -55,13 +55,16 @@ ResNet50.py (Modell und Architektur)
 DataSet.py (Datenvorbereitung und -verarbeitung)
 Funktionen.py (Training, Test, Evaluierung, Visualisierung)
 ```
-Bei der Implementierung des Netzwerkes waren die folgenden drei Schritte wichtig: 
+Bei der Implementierung des Netzwerkes waren die folgenden vier Schritte wichtig: 
 
 1.) Erstellung der Datenklasse 
 
 2.) Erstellung des Modellstruktur 
 
 3.) Erstellung der Trainings- und Evaluierungsfunktion
+
+4.) Erstellung weiterer Evaluierungsmetriken
+
 
 #### Datenklasse
 Bei der Erstellung der Datenklasse ist es "best practice" eine Klasse zu erstellen die von der PyTorch Klasse Dataset erbt. 
@@ -140,6 +143,10 @@ Hier morgen weiter machen
 
 
 ## Auswertung der Ergebnisse
+
+#### Evaluierungsmetriken
+Da es ohne 
+
 
 
 ## Zusammenfassung und Ausblick
