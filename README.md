@@ -50,8 +50,8 @@ Die zugehörigen Klassenlabel und Bounding Box Koordinaten wurden im YOLO-Format
 Dieses Projekt zeigt die Implementierung eines Single Label Object Detection Modells unter Verwendung der vortrainierten ResNet50 Architektur mit PyTorch.
 Die Grundlegende Projektstruktur sieht folgendermaßen aus:
 ```scss
-main.py
-ResNet50.py (Modell und Architektur)
+main.py (DataLoader, Ausführung)
+ResNet50.py (Modellarchitektur)
 DataSet.py (Datenvorbereitung und -verarbeitung)
 Funktionen.py (Training, Test, Evaluierung, Visualisierung)
 ```
@@ -125,6 +125,13 @@ Da das Projekt im Bereich des Swing-Tradings angewendet werden soll, also in ein
 
 #### Projektimplementierung
 Da sich der grundlegende Aufbau des Projekts zu dem des Projekts für das ResNet50 nicht wesentlich unterscheided, wird hier nur auf die Unterschiede eingegangen.
+Die grobe Projektstrukutur sieht folgendermaßen aus:
+```scss
+main.py (Modell, DataLoader, Ausführung)
+DataSet.py (Datenvorbereitung und -verarbeitung)
+Funktionen.py (Training, Test, Evaluierung, Visualisierung)
+```
+
 
 ##### Datenklasse
 Die Bereitstellung von Daten für das F-R-CNN Modell erforderte einige spezifische Änderungen im Vergleich zu der Datenklasse des ResNet50. Ein entscheidender Unterschied liegt in der Art und Weise wie das Ziel (oder target) definiert wird, das für jede Trainings oder Testinstanz ein Dictionary anstelle eines einfachen Labels ist. Diese Dictionary enthällt Informationen über die Bounding Boxes, Klassenbezeichnungen, Bild-ID's und Fläche der Bounding Boxen. Hierbei ist zu beachten, dass die Bounding Boxes als absolute Pixelwerte angegeben werden müssen. Um dies zu erreichen muss eine Umrechnung von YOLO-Koordinaten zu absoluten Pixelwerten stattfinden. Diese sind in der Regel so dargestellt:
@@ -167,10 +174,14 @@ FastRCNNPredictor(in_features, num_classes + 1)
 ```
 Auch hier muss der Hintergrund, als eigene Klasse, berücksichtigt werden.
 
-
-
-
-
+#### Trainings- und Evaluierungsfunktion
+##### Trainingsfunktion
+Im Wesentlichen unterscheided sich die Trainingsfunktion nur kaum, in Hinblick auf den grundlegenden Aufbau, zu der des ResNet50. Lediglich die Verarbeitung der Bilder und der Daten des Train Loaders sind, aufgrund der Struktur der Eingabe die das F-R-CNN fordert, verschieden. Auch bei der Verlustberechnung ist durch die Vewendung des F-R-CNN Modells einiges anders. Hier werden, je nachdem in welchem Modus (.train() oder .eval()), sich das Modell befindet, die verschiedenen Verluste im Ouptut Dictionary gespeichert.
+Eine kleine Übersicht liefert die Ausgabe des Outputs auf die Konsole welches auf der folgenden Seite gemacht wurde [].
+Hier ist ein kleines Beispiel von der Internetseite zur Verdeutlichung:
+``` python
+Epoch: [6]  [ 50/119]  eta: 0:00:46  lr: 0.000050  loss: 0.3973 (0.4123)  loss_classifier: 0.1202 (0.1248)  loss_box_reg: 0.1947 (0.2039)  loss_objectness: 0.0315 (0.0366)  loss_rpn_box_reg: 0.0459 (0.0470)  time: 0.6730  data: 0.1297  max mem: 3105
+```
 
 
 ## Auswertung der Ergebnisse
