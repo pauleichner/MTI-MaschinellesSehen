@@ -205,18 +205,26 @@ Die Testfunktion unterscheided sich nur in den Auswertungsmetriken die vorgenomm
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/50701b51-8043-456f-b0ea-7e0fe5895f7c)
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/7df9d51f-c982-4c98-b2c8-a7259fc6fb13)
 
-
-
 Nachdem alle Funktionen implementiert wurden kann nun das Training über die main.py gestartet werden.
 Der vollständige Code zu dieser Implementierung ist unter /02-Faster R-CNN/ abgelegt. Der dazugehörige Datensatz liegt unter /03-Datensatz/
 
-
 ## Auswertung der Ergebnisse
+### Auswertung ResNet50
 
-#### Evaluierungsmetriken
-Da es ohne 
+Das ResNet50 wurde über 3000 Epochen trainiert. Im Folgenden sind die quantitativen Auswertungen dargestellt.
+
+<img width="1074" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/11f2dbcd-3617-4e0c-ab8e-a4cbdd54be53">
+
+Klar zu erkennen ist das mit steigender Anzahl der Epochen der Gesamtverlust (oben rechts) abnimmt, während die Genauigkeit (unten rechts) zunimmt. Nach 3000 Epochen wird eine Genauigkeit von über 80% erreicht. Simultan dazu verhällt sich ebenfalls der Klassenverlust und die durchschnittliche Intersection over Union. Ingesamt zeigen die Plots, dass das Modell aus den Daten lernt und sich über die Zeit verbessert. Im Folgenden Bild ist Confusion Matrix des Modells dargestellt.
+
+<img width="1093" alt="image" src="https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/19c51dab-5f93-4351-ba58-1c61c22b9200">
+
+
+
+
+
 
 
 ## Zusammenfassung und Ausblick
-
+TODO: Alle Chartpatterns oben nochmal rein
 
