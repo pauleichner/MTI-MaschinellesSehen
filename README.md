@@ -134,6 +134,7 @@ Die Bereitstellung von Daten für das F-R-CNN Modell erforderte einige spezifisc
 ```
 
 Dabei geschieht die Umrechnung folgendermaßen:
+
 ![image](https://github.com/pauleichner/MTI-MaschinellesSehen/assets/77249319/a7c9852b-27ee-44c1-a348-b881fdf21c92)
 
 Ein weiterer Punkt der beachtet werde musste, ist das das F-R-CNN standardmäßig das Klassenlabel "0" als Label für den Hintergrund sieht. Daher mussten hier die Klassenindizies um eins nach vorne geshiftet werden.
