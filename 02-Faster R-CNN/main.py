@@ -54,7 +54,7 @@ def get_transform():
 # Datensätze und DataLoader erstellen
 train_dataset = FRCNNDataclass('train/images', 'train/labels', transform=get_transform())
 test_dataset = FRCNNDataclass('test/images', 'test/labels', transform=get_transform())
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=lambda x: tuple(zip(*x))) # https://github.com/pytorch/pytorch/issues/42654
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
 # Modell erstellen
